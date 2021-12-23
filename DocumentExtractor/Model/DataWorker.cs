@@ -19,6 +19,20 @@ namespace DocumentExtractor.Model
             Source = new Uri(@"pack://application:,,,/Resources/StringResource.xaml")
         };
 
+        private static void SetExported(string guid, string databaseName, string host, string user, string password, string port)
+        {
+            try
+            {
+                using var db = new ApplicationContext(databaseName, host, user, password, port);
+                db.ExecutorRecords.FirstOrDefault(p => p.Guid == guid)!.IsExported = 1;
+                db.SaveChanges();
+
+            }
+            catch (Exception e)
+            {
+                return;
+            }
+        }
         public static List<object> GetExecutorRecordPlainObject(string databaseName, string host, string user,
             string password, string port)
         {
@@ -32,6 +46,7 @@ namespace DocumentExtractor.Model
                 {
                     // record.IsExported = 1;
                     // db.SaveChangesAsync();
+                    SetExported(record.Guid, databaseName, host, user, password, port);
 
                     string blobBase64 = null;
 

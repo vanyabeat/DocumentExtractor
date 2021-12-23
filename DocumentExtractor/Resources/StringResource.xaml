@@ -3,7 +3,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:system="clr-namespace:System;assembly=mscorlib">
     <!--BEGIN GUI STRING-->
-    <system:String x:Key="ApplicationName">DocumentVisor</system:String>
+    <system:String x:Key="ApplicationName">DocumentExtractor</system:String>
+    <system:String x:Key="Credentials">Path credentials</system:String>
+    <system:String x:Key="Extract">Extract</system:String>
+
     <system:String x:Key="Queries">Queries</system:String>
     <system:String x:Key="Persons">Persons</system:String>
     <system:String x:Key="PersonTypes">Person Types</system:String>
@@ -46,6 +49,7 @@
     <system:String x:Key="Identifier">Identifier</system:String>
     <system:String x:Key="IdentifierType">Identifier Type</system:String>
     <system:String x:Key="Download">Download</system:String>
+
     <system:String x:Key="IdentifierNeedToSelect">Identifier need select</system:String> 
     <!--END GUI STRING-->
 </ResourceDictionary>

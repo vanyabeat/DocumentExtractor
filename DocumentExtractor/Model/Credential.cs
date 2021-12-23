@@ -11,5 +11,10 @@ namespace DocumentExtractor.Model
         public string Host { get; set; }
         public string Port { get; set; }
         public string DataBase { get; set; }
+
+        public override string ToString()
+        {
+            return $"U:{User}, H:{Host}, P:{Port}, DB:{DataBase}";
+        }
     }
 }

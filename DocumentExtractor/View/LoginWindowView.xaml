@@ -12,17 +12,14 @@
         Width="1000" Height="200"
         Background="{DynamicResource WindowBackgroundBrush}" AllowsTransparency="True" WindowStyle="None" ResizeMode="NoResize">
     <Window.Resources>
-
-        <!--<Storyboard x:Key="FadeIn">
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="window">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0.4"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
-            </DoubleAnimationUsingKeyFrames>
-        </Storyboard>-->
-
-        <local:ValueConverter x:Key="ValueConverter" />
-
-        <local:TextBoxToVisibilityConverter x:Key="TextBoxToVisibilityConverter" />
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary
+                    Source="/Resources/StringResource.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <local:ValueConverter x:Key="ValueConverter" />
+            <local:TextBoxToVisibilityConverter x:Key="TextBoxToVisibilityConverter" />
+        </ResourceDictionary>
 
     </Window.Resources>
     <!--<Window.Triggers>
@@ -41,7 +38,7 @@
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8,0,0,0" Height="40">
                     <Path Width="19.5" Height="28.5" Margin="20,0,12,0" Stretch="Fill" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="{StaticResource ThemeColorBrush}" Data="F1 M 25,27L 46,19L 46,22.25L 28.5,29L 31.75,31.25L 51,23.75L 51,48.5L 31.75,57L 25,52L 25,27 Z "/>
                     <!--<Image Source="/Ruby;component/Backend/Icons/32x32/Normal/asset-banknote.png" Style="{StaticResource UserControlImageStyle}" ></Image>-->
-                    <TextBlock Foreground="{StaticResource ThemeColorBrush}" Text="Login Window" FontSize="20" Margin="8,2,0,0" FontWeight="Normal" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Segoe WP" />
+                    <TextBlock Foreground="{StaticResource ThemeColorBrush}" Text="{StaticResource ApplicationName}" FontSize="20" Margin="8,2,0,0" FontWeight="Normal" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Segoe WP" />
                 </StackPanel>
                 <Thumb Opacity="0" Background="Transparent" Foreground="{x:Null}" DragDelta="Thumb_OnDragDelta"/>
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,8,0">
@@ -71,13 +68,13 @@
                     <TextBlock Grid.Column="0" Margin="4,1,2,0" VerticalAlignment="Center" TextAlignment="Center" FontSize="16" Height="22" Text="Path" Foreground="{StaticResource UserControlButtonIsPressedBrush}"
                                            Visibility="{Binding Text, Converter={StaticResource TextBoxToVisibilityConverter}, ElementName=PathTextBox}" />
                     <TextBox Grid.Column="0" Style="{StaticResource LoginTextBoxStyle}" Text="{Binding SelectedCredentials}" x:Name="PathTextBox" IsEnabled="false" CharacterCasing="Lower" TabIndex="4" Width="480" HorizontalAlignment="Left" Margin="-398,0,0,0" />
-                    <Button Grid.Column="1" x:Name="PathButton" Content="Path" Width="90" Height="36" TabIndex="8" Command="{Binding OpenPathWindow}"
+                    <Button Grid.Column="1" x:Name="PathButton" Content="{StaticResource Credentials}" Width="90" Height="36" TabIndex="8" Command="{Binding OpenPathWindow}"
                                         CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}" />
                 </Grid>
-                <Button x:Name="LocalLoginButton" Content="Login" Width="182" Height="36" TabIndex="8" Command="{Binding ExportJson}"
+                <Button x:Name="LocalLoginButton" Content="{StaticResource Extract}" Width="182" Height="36" TabIndex="8" Command="{Binding ExportJson}"
                                     CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}" />
             </StackPanel>
-            <TextBox x:Name="textBox" HorizontalAlignment="Left" Margin="596,0,0,0" Grid.Row="2" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center" Width="393" Height="129"/>
+            <TextBox x:Name="LogTextBox" HorizontalAlignment="Left" Margin="596,0,0,0" Grid.Row="2" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="393" Height="129" IsReadOnly="True"/>
 
         </Grid>
     </Border>

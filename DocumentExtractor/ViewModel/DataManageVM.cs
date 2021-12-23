@@ -99,15 +99,18 @@ namespace DocumentExtractor.ViewModel
                 return _exportJson ?? new AsyncRelayCommand<object>(obj =>
                     {
                         var window = obj as Window;
+                        var textBox = window.FindName("LogTextBox") as TextBox;
                         var p = new StaticData(SelectedCredentials);
                         var credentials = StaticData.Credentials.ToArray();
                         var result = new List<object>();
                         foreach (var cred in credentials)
                         {
                             result.AddRange(DataWorker.GetExecutorRecordPlainObject(cred.DataBase, cred.Host, cred.User, cred.Password, cred.Port));
+                            textBox.Text += $"Connect to {cred}\n";
                         }
 						SaveFileDialog dialog = new SaveFileDialog()
                         {
+							FileName = $"{DateTime.Now:dd_MM_yyyy}_exportdata",
                             Filter = "Text Files(*.json)|*.json|All(*.*)|*"
                         };
 
