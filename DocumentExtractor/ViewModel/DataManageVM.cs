@@ -105,7 +105,16 @@ namespace DocumentExtractor.ViewModel
                         var result = new List<object>();
                         foreach (var cred in credentials)
                         {
-                            result.AddRange(DataWorker.GetExecutorRecordPlainObject(cred.DataBase, cred.Host, cred.User, cred.Password, cred.Port));
+                            try
+                            {
+                                result.AddRange(DataWorker.GetExecutorRecordPlainObject(cred.DataBase, cred.Host, cred.User, cred.Password, cred.Port));
+							}
+                            catch (Exception e)
+                            {
+                                MessageBox.Show(
+                                    $"Warning wrong connection to ${cred.DataBase} ${cred.Host} ${cred.User}");
+                            }
+                            
                             textBox.Text += $"Connect to {cred}\n";
                         }
 						SaveFileDialog dialog = new SaveFileDialog()

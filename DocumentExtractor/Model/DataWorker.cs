@@ -44,8 +44,6 @@ namespace DocumentExtractor.Model
                 var records = db.ExecutorRecords.Where(p => p.IsExported == 0).ToList();
                 foreach (var record in records)
                 {
-                    // record.IsExported = 1;
-                    // db.SaveChangesAsync();
                     SetExported(record.Guid, databaseName, host, user, password, port);
 
                     string blobBase64 = null;

@@ -14,7 +14,7 @@ namespace DocumentExtractor.Model
 
         public override string ToString()
         {
-            return $"U:{User}, H:{Host}, P:{Port}, DB:{DataBase}";
+            return $"U: {User}, H: {Host}, P: {Port}, DB: {DataBase}";
         }
     }
 }

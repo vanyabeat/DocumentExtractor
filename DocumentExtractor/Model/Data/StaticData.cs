@@ -11,18 +11,18 @@ namespace DocumentExtractor.Model.Data
 
         public static StaticData Instance => _lazy.Value;
 
-        public static SortedSet<Credential> Credentials { get; private set; }
+        public static List<Credential>? Credentials { get; private set; }
 
         public StaticData(string path)
         {
             try
             {
-                Credentials = JsonConvert.DeserializeObject<SortedSet<Credential>>(File.ReadAllText(path));
+                Credentials = JsonConvert.DeserializeObject<List<Credential>>(File.ReadAllText(path));
 
             }
             catch (Exception e)
             {
-                Credentials = new SortedSet<Credential>();
+                Credentials = new List<Credential>();
             }
 
             _lazy = new Lazy<StaticData>(() => new StaticData(path));
